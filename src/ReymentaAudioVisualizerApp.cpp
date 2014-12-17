@@ -210,8 +210,6 @@ void ReymentaAudioVisualizerApp::setup()
 	mLineIn->enable();
 
 	// wave
-	// TODO: it is pretty surprising when you recreate mScope here without checking if there has already been one added.
-	//	- user will no longer see the old mScope, but the context still owns a reference to it, so another gets added each time we call this method.
 	auto scopeWaveFmt = audio::MonitorSpectralNode::Format().fftSize(2048).windowSize(1024);
 	mMonitorWaveSpectralNode = ctx->makeNode(new audio::MonitorSpectralNode(scopeWaveFmt));
 
@@ -607,20 +605,8 @@ void ReymentaAudioVisualizerApp::keyDown(KeyEvent event)
 		if (event.isAltDown())
 			quit();
 		break;
-	case KeyEvent::KEY_LEFT:
-
-		break;
-	case KeyEvent::KEY_RIGHT:
-		break;
 	case KeyEvent::KEY_f:
 		setFullScreen(!isFullScreen());
-		break;
-	case KeyEvent::KEY_o:
-		break;
-	case KeyEvent::KEY_p:
-		break;
-	case KeyEvent::KEY_s:
-
 		break;
 	}
 }
